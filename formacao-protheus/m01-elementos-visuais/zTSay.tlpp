@@ -1,0 +1,32 @@
+#include 'totvs.ch'
+#include 'protheus.ch'
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} function
+Fonte exemplificando do uso da função zTSay
+@author  Lenon
+@since   05/10/2021
+@see https://tdn.totvs.com/display/tec/Construtor+TSay%3ANew
+/*/
+//-------------------------------------------------------------------
+
+User Function zTSay()
+
+Local oDlg
+Local cTituloJanela := "Utilitários do Protheus"
+Local oButton1, oButton2, oButton3, oButton4, oButton5
+Local oSay
+
+oDlg        := TDialog():New(180,180,550,700,cTituloJanela,,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+
+oSay        := TSay():New(05,50,{||   "Botões utilitários para o Protheus"},oDlg,,oFont,,,,.T.,CLR_BLUE,CLR_WHITE,200,20)
+
+oButton1    := TButton():New(20, 50,  "Clientes",    oDlg,{|| Mata030()}, 40,10,,,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro clientes
+oButton2    := TButton():New(40, 50,  "Fornecedores",oDlg,{|| Mata020()}, 40,10,,,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro de fornecedores
+oButton3    := TButton():New(60, 50,  "Bancos",      oDlg,{|| Mata070()}, 40,10,,,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro de bancos
+oButton4    := TButton():New(80, 50,  "Produtos",    oDlg,{|| Mata010()}, 40,10,,,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro de produtos
+oButton5    := TButton():New(100, 100,"Sair",        oDlg,{||oDlg:End()}, 40,10,,,.F.,.T.,.F.,,.F.,,,.F.) // Botão para sair do programa
+
+oDlg:Activate(,,,.F.)
+
+Return

@@ -1,0 +1,23 @@
+#include 'totvs.ch'
+#include 'protheus.ch'
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} function
+Fonte exemplificando do uso da função zTDialog
+@author  Lenon
+@since   05/10/2021
+/*/
+//-------------------------------------------------------------------
+
+User Function zTDialog()
+
+// Variavel que recebera uma instancia do objeto TDialog
+Local oDlg
+
+// Cria o dialogo
+oDlg := TDialog():New(0,0,550,700,'Exemplo de TDialog',,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+
+// Ativa o TDialog
+oDlg:Activate(,,,.T.) // Quarto parametro setado como true faz com que a janela fique posicionada no meio
+
+Return
