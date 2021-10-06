@@ -1,8 +1,38 @@
 #include 'totvs.ch'
 #include 'protheus.ch'
 
+//-------------------------------------------------------------------
+/*/{Protheus.doc} function
+Fonte exemplificando o uso do zTGet
+@author  Lenon
+@since   06/10/2021
+@see https://tdn.totvs.com/display/tec/Construtor+TGet%3ANew
+/*/
+//-------------------------------------------------------------------
+
 User Function zTGet()
 
+Local oDlg1
+Local oFont
+Local aSize         := MsAdvsize()
+Local oSayNome, oSayEnd
+Local oButtonNome, oButtonEnd
+Local oGetNome, oGetEnd
+Local cGetNome      := Space(16)
+Local cGetEnd       := Space(20)
 
+oFont           := TFont():New('Courier new',,16,,.F.,,,,,.F., .F.)
+
+oDgl1           := TDialog():New(aSize[7],aSize[1],aSize[6],aSize[5],"Utilizando o TGet",,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+
+oSayNome        := TSay():New(10,10,{||"Digite o seu nome:"},oDlg1,,oFont,,,,.T.,CLR_BLUE,CLR_WHITE,200,20)
+oGetNome        := TGet():New(20,10,{|u|if(Pcount( )>0, cGetNome:= u, cGetNome)},oDlg1,60,10,"@!",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetNome,,,,)
+oButtonNome     := TButton():New(35,10,"Mostrar Nome",oDlg1,{|| MsgInfo(cGetNome,"Conteudo Digitado") },50,10,,oFont,.F.,.T.,.F.,,.F.,,,.F.)
+
+oSayEnd         := TSay():New(60,10,{||"Digite o seu endereco:"},oDlg1,,oFont,,,,.T.,CLR_BLUE,CLR_WHITE,200,20)
+oGetEnd         := TGet():New(70,10,{|u|if(Pcount( )>0, cGetEnd:= u, cGetEnd)},oDlg1,60,10,"@!",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetEnd,,,,)
+oButtonEnd      := TButton():New(85,10,"Mostrar Endereco",oDlg1,{|| MsgInfo(cGetEnd,"Conteudo Digitado") },60,10,,oFont,.F.,.T.,.F.,,.F.,,,.F.)
+
+oDgl1:Activate(,,,.F.)
 
 Return

@@ -3,7 +3,7 @@
 
 //-------------------------------------------------------------------
 /*/{Protheus.doc} function
-Fonte exemplificando do uso da função zTFont
+Fonte exemplificando o uso da função zTFont
 @author  Lenon
 @since   05/10/2021
 @see https://tdn.totvs.com/display/tec/TFont%3ANew
@@ -20,8 +20,8 @@ Local oFont1, oFont2
 
 oDlg        := TDialog():New(180,180,550,700,cTituloJanela,,,,,CLR_BLACK,CLR_WHITE,,,.T.)
 
-oFont1      := TFont():New('Courier new',,16,,.F.,,,,,.T., .T.)
-oFont2      := TFont():New('Arial Black',,12,,.F.,,,,,.T., .T.)
+oFont1      := TFont():New('Courier new',,16,,.F.,,,,,.F., .F.)
+oFont2      := TFont():New('Arial Black',,12,,.F.,,,,,.F., .F.)
 
 oSay        := TSay():New(05,50,{||   "Botões utilitários para o Protheus"},oDlg,,oFont1,,,,.T.,CLR_BLUE,CLR_WHITE,200,20)
 
