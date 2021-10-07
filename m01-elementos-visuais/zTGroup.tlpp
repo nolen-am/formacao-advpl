@@ -1,6 +1,15 @@
 #include 'totvs.ch'
 #include 'protheus.ch'
 
+//-------------------------------------------------------------------
+/*/{Protheus.doc} function
+Fonte exemplificando o uso do zTGet com DbSeek e RecLock
+@author  Lenon
+@since   07/10/2021
+@see: https://tdn.totvs.com/display/tec/TGroup
+/*/
+//-------------------------------------------------------------------
+
 User Function zTGroup()
 
 // todo

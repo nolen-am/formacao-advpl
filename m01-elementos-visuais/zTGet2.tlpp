@@ -3,7 +3,7 @@
 
 //-------------------------------------------------------------------
 /*/{Protheus.doc} function
-Fonte exemplificando o uso do zTGet com DbSeek e RecLock
+Fonte para bloqueio de cliente exemplificando o uso do zTGet com DbSeek e RecLock
 @author  Lenon
 @since   06/10/2021
 @see http://efacildemais.blogspot.com/2011/06/msadvsize-dimensionamento-de-janelas-no.html - MsAdvSize

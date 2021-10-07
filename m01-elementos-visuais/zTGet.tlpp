@@ -14,12 +14,12 @@ User Function zTGet()
 
 Local oDlg1
 Local oFont
-Local aSize         := MsAdvsize()
+Local aSize     := MsAdvsize()
 Local oSayNome, oSayEnd
 Local oButtonNome, oButtonEnd
 Local oGetNome, oGetEnd
-Local cGetNome      := Space(16)
-Local cGetEnd       := Space(20)
+Local cGetNome  := Space(16)
+Local cGetEnd   := Space(20)
 
 oFont           := TFont():New('Courier new',,16,,.F.,,,,,.F., .F.)
 
