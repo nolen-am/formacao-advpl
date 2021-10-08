@@ -11,13 +11,13 @@ Fonte exemplificando o uso da função zTDialog
 
 User Function zTDialog()
 
-// Variavel que recebera uma instancia do objeto TDialog
-Local oDlg
-
-// Cria o dialogo
-oDlg := TDialog():New(0,0,550,700,'Exemplo de TDialog',,,,,CLR_BLACK,CLR_WHITE,,,.T.)
-
-// Ativa o TDialog
-oDlg:Activate(,,,.T.) // Quarto parametro setado como true faz com que a janela fique posicionada no meio
+    // Variavel que recebera uma instancia do objeto TDialog
+    Local oDlg
+    
+    // Cria o dialogo
+    oDlg := TDialog():New(0,0,550,700,'Exemplo de TDialog',,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+    
+    // Ativa o TDialog
+    oDlg:Activate(,,,.T.) // Quarto parametro setado como true faz com que a janela fique posicionada no meio
 
 Return

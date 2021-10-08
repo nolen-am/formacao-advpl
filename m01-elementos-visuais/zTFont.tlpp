@@ -12,25 +12,25 @@ Fonte exemplificando o uso da função zTFont
 
 User Function zTFont()
 
-Local oDlg
-Local cTituloJanela := "Utilitários do Protheus"
-Local oButton1, oButton2, oButton3, oButton4, oButton5
-Local oSay
-Local oFont1, oFont2
-
-oDlg        := TDialog():New(180,180,550,700,cTituloJanela,,,,,CLR_BLACK,CLR_WHITE,,,.T.)
-
-oFont1      := TFont():New('Courier new',,16,,.F.,,,,,.F., .F.)
-oFont2      := TFont():New('Arial Black',,12,,.F.,,,,,.F., .F.)
-
-oSay        := TSay():New(05,50,{||   "Botões utilitários para o Protheus"},oDlg,,oFont1,,,,.T.,CLR_BLUE,CLR_WHITE,200,20)
-
-oButton1    := TButton():New(20, 50,  "Clientes",    oDlg,{|| Mata030()}, 40,10,,oFont2,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro clientes
-oButton2    := TButton():New(40, 50,  "Fornecedores",oDlg,{|| Mata020()}, 40,10,,oFont2,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro de fornecedores
-oButton3    := TButton():New(60, 50,  "Bancos",      oDlg,{|| Mata070()}, 40,10,,oFont2,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro de bancos
-oButton4    := TButton():New(80, 50,  "Produtos",    oDlg,{|| Mata010()}, 40,10,,oFont2,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro de produtos
-oButton5    := TButton():New(100, 100,"Sair",        oDlg,{||oDlg:End()}, 40,10,,oFont2,.F.,.T.,.F.,,.F.,,,.F.) // Botão para sair do programa
-
-oDlg:Activate(,,,.F.)
+    Local oDlg
+    Local cTituloJanela := "Utilitários do Protheus"
+    Local oButton1, oButton2, oButton3, oButton4, oButton5
+    Local oSay
+    Local oFont1, oFont2
+    
+    oDlg        := TDialog():New(180,180,550,700,cTituloJanela,,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+    
+    oFont1      := TFont():New('Courier new',,16,,.F.,,,,,.F., .F.)
+    oFont2      := TFont():New('Arial Black',,12,,.F.,,,,,.F., .F.)
+    
+    oSay        := TSay():New(05,50,{||   "Botões utilitários para o Protheus"},oDlg,,oFont1,,,,.T.,CLR_BLUE,CLR_WHITE,200,20)
+    
+    oButton1    := TButton():New(20, 50,  "Clientes",    oDlg,{|| Mata030()}, 40,10,,oFont2,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro clientes
+    oButton2    := TButton():New(40, 50,  "Fornecedores",oDlg,{|| Mata020()}, 40,10,,oFont2,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro de fornecedores
+    oButton3    := TButton():New(60, 50,  "Bancos",      oDlg,{|| Mata070()}, 40,10,,oFont2,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro de bancos
+    oButton4    := TButton():New(80, 50,  "Produtos",    oDlg,{|| Mata010()}, 40,10,,oFont2,.F.,.T.,.F.,,.F.,,,.F.) // Chama tela de cadastro de produtos
+    oButton5    := TButton():New(100, 100,"Sair",        oDlg,{||oDlg:End()}, 40,10,,oFont2,.F.,.T.,.F.,,.F.,,,.F.) // Botão para sair do programa
+    
+    oDlg:Activate(,,,.F.)
 
 Return

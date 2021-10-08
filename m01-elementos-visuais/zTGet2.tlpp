@@ -20,35 +20,35 @@ Fonte para bloqueio de cliente exemplificando o uso do zTGet com DbSeek e RecLoc
 
 User Function zTGet2()
 
-Local oDlg1
-Local oFont
-Local oSayNome
-Local oButtonNome
-Local oGetNome, oGetLoja
-Local cGetNome   := Space(6)
-Local cGetLoja   := Space(2)
+    Local oDlg
+    Local oFont
+    Local oSayNome
+    Local oButtonNome
+    Local oGetNome, oGetLoja
+    Local cGetNome   := Space(6)
+    Local cGetLoja   := Space(2)
 
-oFont            := TFont():New('Courier new',,16,,.F.,,,,,.T., .T.)
-oDlg1            := TDialog():New(0,0,200,500,"Bloqueia Clientes",,,,,CLR_BLACK,CLR_WHITE,,,.T.)
-oSayNome         := TSay():New(10,10,{||"Cliente"},oDlg,,oFont,,,,.T.,CLR_BLUE,CLR_WHITE,200,20)
-oGetNome         := TGet():New(25,10,{|u|if(Pcount( )>0, cGetNome:= u, cGetNome)},oDlg,40,10,"@!",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetNome,,,,)
-oGetNome:cF3     := "SA1"
-oSayLoja         := TSay():New(10,60,{||"Loja"},oDlg,,oFont,,,,.T.,CLR_BLUE,CLR_WHITE,200,20)
-oGetLoja         := TGet():New(25,60,{|u|if(Pcount( )>0, cGetLoja:= u, cGetLoja)},oDlg,20,10,"@!",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetLoja,,,,)
-oButtonNome      := TButton():New(60,10,"Bloquear",oDlg1,{|| fBloq(cCodCli,cLoja)},50,10,,oFont,.F.,.T.,.F.,,.F.,,,.F.)
-oDgl1:Activate(,,,.T.)
+    oFont            := TFont():New('Courier new',,16,,.F.,,,,,.T., .T.)
+    oDlg            := TDialog():New(0,0,200,500,"Bloqueia Clientes",,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+    oSayNome         := TSay():New(10,10,{||"Cliente"},oDlg,,oFont,,,,.T.,CLR_BLUE,CLR_WHITE,200,20)
+    oGetNome         := TGet():New(25,10,{|u|if(Pcount( )>0, cGetNome:= u, cGetNome)},oDlg,40,10,"@!",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetNome,,,,)
+    oGetNome:cF3     := "SA1"
+    oSayLoja         := TSay():New(10,60,{||"Loja"},oDlg,,oFont,,,,.T.,CLR_BLUE,CLR_WHITE,200,20)
+    oGetLoja         := TGet():New(25,60,{|u|if(Pcount( )>0, cGetLoja:= u, cGetLoja)},oDlg,20,10,"@!",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetLoja,,,,)
+    oButtonNome      := TButton():New(60,10,"Bloquear",oDlg,{|| fBloq(cCodCli,cLoja)},50,10,,oFont,.F.,.T.,.F.,,.F.,,,.F.)
+    oDgl1:Activate(,,,.T.)
 
 Return
 
 Static Function fBloq(cCodCli, cLoja)
 
-DbSelectArea("SA1")
-SA1->(DbSeek(xFilial())+cCod+cLoja)
+    DbSelectArea("SA1")
+    SA1->(DbSeek(xFilial())+cCod+cLoja)
+        
+    RecLock("SA1",.F.) // O segundo parametro é um booleano onde: true = inclusao / false = edicao
+        SA1->A1_MSBQL := '1'
+    MsUnlock()
     
-RecLock("SA1",.F.) // O segundo parametro é um booleano onde: true = inclusao / false = edicao
-    SA1->A1_MSBQL := '1'
-MsUnlock()
-
-MsgInfo("O cliente: "+cCod+", loja: "+cLoja+" estão sendo bloqueados!", "ATENÇÃO!")
+    MsgInfo("O cliente: "+cCod+", loja: "+cLoja+" estão sendo bloqueados!", "ATENÇÃO!")
 
 Return
