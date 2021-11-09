@@ -5,13 +5,44 @@
 /*/{Protheus.doc} function
 Fonte exemplificando o uso do zTGet com DbSeek e RecLock
 @author  Lenon
-@since   07/10/2021
+@since   09/11/2021
 @see: https://tdn.totvs.com/display/tec/TGroup
 /*/
 //-------------------------------------------------------------------
 
 User Function zTGroup()
+    Local oDlg
+    Local oButton1, oButton2
+    Local oGroup1, oGroup2
 
-// todo
+    Private cGet1, cGet2, cGet3, cGet4
+    Private oGet1, oGet2, oGet3, oGet4
+
+    cGet1    := Space(30)
+    cGet2    := Space(30)
+    cGet3    := Space(30)
+    cGet4    := Space(30)
+
+    oDlg     := TDialog():New(0,0,410,410,'Elemento TGroup com TGet',,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+
+    oGroup1  := TGroup() :New(010,010,100,200,"Grupo 1",oDlg,,,.T.)
+    oGet1    := TGet()   :New(30,30,{|u|if(Pcount( )>0, cGet1:= u, cGet1)},oDlg,100,10,"@!",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGet1,,,,)
+    oGet2    := TGet()   :New(50,30,{|u|if(Pcount( )>0, cGet2:= u, cGet2)},oDlg,100,10,"@!",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGet2,,,,)
+    oButton1 := TButton():New(80,30,"Gerar os GETS",oDlg,{|| EnviarGets()},50,10,,oFont,.F.,.T.,.F.,,.F.,,,.F.)
+
+
+    oGroup2  := TGroup() :New(110,010,200,200,"Grupo 2",oDlg,,,.T.)
+    oGet3    := TGet()   :New(130,30,{|u|if(Pcount( )>0, cGet3:= u, cGet3)},oDlg,100,10,"@!",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.T.,.F.,,cGet3,,,,)
+    oGet4    := TGet()   :New(150,30,{|u|if(Pcount( )>0, cGet4:= u, cGet4)},oDlg,100,10,"@!",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.T.,.F.,,cGet4,,,,)
+    oButton2 := TButton():New(180,30,"Sair",oDlg,{|| oDlg:End()},50,10,,oFont,.F.,.T.,.F.,,.F.,,,.F.)
+
+
+    oDlg:Activate(,,,.T.)
+
+Return
+
+Static Function EnviarGets()
+    cGet3   := cGet1
+    cGet4   := cGet2
 
 Return
