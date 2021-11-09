@@ -41,6 +41,12 @@ User Function zTGroup()
 
 Return
 
+//-------------------------------------------------------------------
+/*/{Protheus.doc} function
+Função reponsável por enviar os GETS para o Grupo 2
+@author  Lenon
+/*/
+//-------------------------------------------------------------------
 Static Function EnviarGets()
     cGet3   := cGet1
     cGet4   := cGet2
