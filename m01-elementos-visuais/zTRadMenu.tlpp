@@ -1,0 +1,15 @@
+#include 'totvs.ch'
+#include 'protheus.ch'
+
+User Function zTRadMenu()
+
+    DEFINE DIALOG oDlg TITLE "Exemplo TRadMenu" FROM 180,180 TO 550,700 PIXEL
+   
+        nRadio := 1
+        aItems := {'Item01','Item02','Item03','Item04','Item05'}
+        oRadio := TRadMenu():New (01,01,aItems,,oDlg,,,,,,,,100,12,,,,.T.)
+        oRadio:bSetGet := {|u|Iif (PCount()==0,nRadio,nRadio:=u)}
+   
+    ACTIVATE DIALOG oDlg CENTERED
+
+Return
