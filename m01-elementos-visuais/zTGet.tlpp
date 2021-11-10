@@ -11,7 +11,7 @@ Fonte exemplificando o uso do zTGet
 //-------------------------------------------------------------------
 
 User Function zTGet()
-
+    
     Local oDlg1
     Local oFont
     Local aSize     := MsAdvsize()

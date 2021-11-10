@@ -10,7 +10,7 @@ Fonte exemplificando o uso da função zTButton
 /*/
 //-------------------------------------------------------------------
 User Function zTButton()
-
+    
     Local oDlg
     Local cTituloJanela := "Utilitários do Protheus"
     Local oButton1

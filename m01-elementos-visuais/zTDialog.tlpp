@@ -16,7 +16,7 @@ User Function zTDialog()
     
     // Cria o dialogo
     oDlg := TDialog():New(0,0,550,700,'Exemplo de TDialog',,,,,CLR_BLACK,CLR_WHITE,,,.T.)
-    
+        
     // Ativa o TDialog
     oDlg:Activate(,,,.T.) // Quarto parametro setado como true faz com que a janela fique posicionada no meio
 

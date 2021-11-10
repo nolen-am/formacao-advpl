@@ -11,7 +11,7 @@ Fonte exemplificando o uso do MsAdvsize
 //-------------------------------------------------------------------
 
 User Function zMsAdvsize()
-
+    
     Local oDlg
     Local cTituloJanela := "Utilitarios do Protheus"
     Local oButton1, oButton2, oButton3, oButton4, oButton5

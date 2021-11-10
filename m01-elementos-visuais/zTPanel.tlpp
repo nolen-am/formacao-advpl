@@ -1,0 +1,23 @@
+#include 'totvs.ch'
+#include 'protheus.ch'
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} function
+@author  Lenon
+@since   10/11/21
+@see https://tdn.totvs.com/display/tec/Construtor+TPanel%3ANew    
+/*/
+//-------------------------------------------------------------------
+
+User Function zTPanel()
+    Local oDlg, oPanel, oSay, oGet
+    Local cGet := Space(20)
+
+    oDlg    := TDialog():New(0,0,300,300,'Teste TPanel',,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+    oPanel  := tPanel() :New(10,10,"Teste",oDlg,,.T.,,CLR_YELLOW,CLR_BLUE,100,100)
+    oSay    := TSay()   :New(10,10,{||'Cliente'},oPanel,,,,,,.T.,CLR_WHITE,CLR_WHITE,300,20)
+    oGet    := TGet()   :New(25,10,{|u|if(Pcount( )>0, cGet:= u, cGet)},oPanel,60,10,"@!",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGet,,,,)
+
+    oDlg:Activate(,,,.T.)
+
+Return

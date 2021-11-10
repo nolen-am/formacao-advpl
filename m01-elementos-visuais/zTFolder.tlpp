@@ -1,0 +1,47 @@
+#include 'totvs.ch'
+#include 'protheus.ch'
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} function
+@author  Lenon
+@since   10/11/21
+@see https://tdn.totvs.com/display/tec/TFolder
+/*/
+//-------------------------------------------------------------------
+
+User Function zTFolder()
+    Local oDlg, oTFolder
+    Local aTFolder
+
+    Local oTGet1, oTGet2, oTGet3
+    Local cTGet1, cTGet2, cTGet3
+    Local oSay1, oSay2, oSay3
+    Local oButton1, oButton2, oButton3
+
+    DEFINE DIALOG oDlg TITLE "Exemplo TFolder" FROM 180,180 TO 550,700 PIXEL
+        // Cria a Folder
+        aTFolder    := { 'Aba 01', 'Aba 02', 'Aba 03' }
+        oTFolder    := TFolder():New( 0,0,aTFolder,,oDlg,,,,.T.,,260,184 )
+    
+        // Inserindo um TGet em cada aba da folder
+        oSay1       := TSay():New( 01,01,{||'Nome Aba 1'},oTFolder:aDialogs[1],,,,,,.T.,CLR_WHITE,CLR_WHITE,300,20 )
+        cTGet1      := Space(30)
+        oTGet1      := TGet():New( 10,10,{|u|if(Pcount( )>0, cTGet1:= u, cTGet1)},oTFolder:aDialogs[1],096,009,;
+            "",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cTGet1,,,, )
+        oButton1    := TButton():New( 25,10,"Executar Aba 01",oTFolder:aDialogs[1],{|| MsgInfo(cTGet1,"Conteúdo Digitado" )},50,10,,oFont,.F.,.T.,.F.,,.F.,,,.F. )
+        
+        oSay2       := TSay():New( 01,01,{||'Nome Aba 2'},oTFolder:aDialogs[2],,,,,,.T.,CLR_WHITE,CLR_WHITE,300,20 )
+        cTGet2      := Space(30)
+        oTGet2      := TGet():New( 10,10,{|u|if(Pcount( )>0, cTGet2:= u, cTGet2)},oTFolder:aDialogs[2],096,009,;
+            "",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cTGet2,,,, )
+        oButton2    := TButton():New( 25,10,"Executar Aba 02",oTFolder:aDialogs[2],{|| MsgInfo(cTGet2,"Conteúdo Digitado")},50,10,,oFont,.F.,.T.,.F.,,.F.,,,.F. )
+
+        oSay3       := TSay():New( 01,01,{||'Nome Aba 3'},oTFolder:aDialogs[3],,,,,,.T.,CLR_WHITE,CLR_WHITE,300,20 )
+        cTGet3      := Space(30)
+        oTGet3      := TGet():New( 10,10,{|u|if(Pcount( )>0, cTGet3:= u, cTGet3)},oTFolder:aDialogs[3],096,009,;
+            "",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cTGet3,,,, )
+        oButton3    := TButton():New( 25,10,"Executar Aba 03",oTFolder:aDialogs[3],{|| MsgInfo(cTGet3,"Conteúdo Digitado")},50,10,,oFont,.F.,.T.,.F.,,.F.,,,.F. )
+    
+    ACTIVATE DIALOG oDlg CENTERED
+
+Return

@@ -11,7 +11,7 @@ Fonte exemplificando o uso da função zTSay
 //-------------------------------------------------------------------
 
 User Function zTSay()
-
+    
     Local oDlg
     Local cTituloJanela := "Utilitários do Protheus"
     Local oButton1, oButton2, oButton3, oButton4, oButton5
