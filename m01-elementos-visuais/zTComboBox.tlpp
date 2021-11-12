@@ -1,0 +1,27 @@
+#include 'totvs.ch'
+#include 'protheus.ch'
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} function
+@author  Lenon
+@since   11/11/21
+@see https://tdn.totvs.com/display/tec/TComboBox%3ANew
+/*/
+//-------------------------------------------------------------------
+
+User Function zTComboBox()
+    Local aCombo    := {'Item 01','Item 02','Item 03','Item 04','Item 05'}
+    Local cCombo    := aCombo[1]
+    Local oCombo, oButton
+
+    DEFINE DIALOG oDlg TITLE "Exemplo zTComboBox" FROM 180,180 TO 500,500 PIXEL
+
+        oCombo := TComboBox():New(02,02,{|u|if(PCount()>0,cCombo:=u,cCombo)},aCombo,100,20,oDlg,,;
+            {||Alert('Mudou item da combo')},,,,.T.,,,,,,,,,'cCombo')
+        
+        oButton:= TButton():New( 90,10,"Mostrar Escolha",oDlg,;
+            {|| MsgInfo(cCombo,"Opção escolhida:")},50,10,,oFont,.F.,.T.,.F.,,.F.,,,.F. )
+   
+    ACTIVATE DIALOG oDlg CENTERED
+
+Return

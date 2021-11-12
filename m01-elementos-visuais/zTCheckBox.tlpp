@@ -1,0 +1,35 @@
+#include 'totvs.ch'
+#include 'protheus.ch'
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} function
+@author  Lenon
+@since   11/11/21
+@see https://acessovitalicioformacaoconsult.club.hotmart.com/lesson/0Ov6YPd8Oj/criando-tela-de-marcacao-tcheckbox-parte-1
+/*/
+//-------------------------------------------------------------------
+
+User Function zTCheckBox()
+    Local oCheck1, oCheck2, oCheck3
+    Local lCheck1   := .F.
+    Local lCheck2   := .F.
+    Local lCheck3   := .F.
+
+
+    DEFINE DIALOG oDlg TITLE "Exemplo TCheckBox" FROM 180,180 TO 550,700 PIXEL
+        
+        //Primeira forma de fazer:
+        oCheck1 := TCheckBox():New(20,01,'CheckBox 001',{|| lCheck1},oDlg,100,210,,;
+            {|| lCheck1 := !lCheck1, IIF(lCheck1,MsgInfo("Está marcado", "Status"),MsgInfo("Está Desmarcado", "Status"))},,,,,,.T.,,,)
+        
+        //Segunda forma de fazer:
+        oCheck2 := TCheckBox():New(30,01,'CheckBox 002',,oDlg,100,210,,,,,,,,.T.,,,)
+        oCheck2:bSetGet     := {|| lCheck2}
+        oCheck2:bLClicked   := {|| lCheck2 := !lCheck2, IIF(lCheck2,MsgInfo("Está marcado", "Status"),MsgInfo("Está Desmarcado", "Status"))}
+
+        oCheck3 := TCheckBox():New(30,01,'CheckBox 003',{|| lCheck3},oDlg,100,210,,;
+            {|| lCheck3 := !lCheck3, IIF(lCheck3,MsgInfo("Está marcado", "Status"),MsgInfo("Está Desmarcado", "Status"))},,,,,,.T.,,,)
+
+    ACTIVATE DIALOG oDlg CENTERED
+
+Return

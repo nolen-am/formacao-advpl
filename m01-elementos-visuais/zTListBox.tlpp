@@ -1,0 +1,27 @@
+#include 'totvs.ch'
+#include 'protheus.ch'
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} function
+@author  Lenon
+@since   11/11/21
+@see https://tdn.totvs.com/display/tec/Construtor+TListBox%3ANew
+/*/
+//-------------------------------------------------------------------
+
+User Function zTListBox()
+    Local aOpcoes    := {'Item 01','Item 02','Item 03','Item 04','Item 05'}
+    Local nOpcao     := 1
+    Local oListBox, oButton
+
+    DEFINE DIALOG oDlg TITLE "Exemplo zTListBox" FROM 180,180 TO 500,500 PIXEL
+
+        oListBox := TListBox():New(001,001,{|u|if(Pcount()>0,nOpcao:=u,nOpcao)},;
+            {'Item 1','Item 2','Item 3','Item 4'},100,100,,oDlg,,,,.T.)
+
+        oButton:= TButton():New( 90,10,"Mostrar Escolha",oDlg,;
+            {|| MsgInfo(aOpcoes[nOpcao],"Opção escolhida:")},50,10,,oFont,.F.,.T.,.F.,,.F.,,,.F. )
+   
+    ACTIVATE DIALOG oDlg CENTERED
+
+Return
