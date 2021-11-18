@@ -1,0 +1,95 @@
+#include 'totvs.ch'
+#include 'protheus.ch'
+
+User Function telaDeCadastro()
+
+    Private oDlg1
+    Private cTituloJanela   := "Projeto 01 - Tela de Cadastro"
+
+    // Variáveis da estrutura de folder
+    Private oFolder
+    Private aFolder
+
+    // Variáveis referentes aos objetos do folder (Dados Pessoais)
+    Private oSayNome
+    Private cGetNome
+    Private oGetNome
+
+    Private oSayNomeReduz
+    Private cGetNomeReduz
+    Private oGetNomeReduz
+
+    Private oSayDataNasc
+    Private dGetDataNasc
+    Private oGetDataNasc
+
+    Private oSayDDD
+    Private cGetDDD
+    Private oGetDDD
+
+    Private oSayCel
+    Private cGetCel
+    Private oGetCel
+
+    Private oGroupGenero
+
+    Private aGenero := {"Masculino, Feminino"}
+    Private nGenero := 1
+    Private oRadioGenero
+
+    // Variáveis referentes aos objetos do folder (Endereço)
+    Private oSayEndereco
+    Private oGetEndereco
+    Private cGetEndereco
+
+    // Variáves referentes aos objetos do folder (Outros)
+    Private oSayOutros
+    Private oGetOutros
+    Private dGetOutros
+
+    // Criação da janela
+    oDlg1           := TDialog():New(0,0,720,1280,cTituloJanela,,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+
+    // Alimentando o array com os nomes das abas e instanciando o objeto folder, adicionando ao oDlg1
+    aFolder         := { "Dados Pessoais", "Endereço", "Outros" }
+    oFolder         := TFolder():New(0,0,aFolder,aFolder,oDlg1,,,,.T.,,600,200)
+
+    // Elementos visuais que compõe a primeira aba do Folder - Dados Pessoais
+    oSayNome        := TSay():New(01,05,{||'Nome'},oFolder:aDialogs[1],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    cGetNome        := Space(30)
+    oGetNome        := TGet():New(10,05,{|u| IIF(Pcount()>0,cGetNome:=u,cGetNome)},;
+        oFolder:aDialogs[1],096,009,"",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetNome,,,,)
+
+    oSayNomeReduz   := TSay():New(01,110,{||'Nome Reduzido'},oFolder:aDialogs[1],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    cGetNomeReduz   := Space(10)
+    oGetNomereduz   := TGet():New(10,110,{|u| IIF(Pcount()>0,cGetNomeReduz:=u,cGetNomeReduz)},;
+        oFolder:aDialogs[1],060,009,"",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetNomeReduz,,,,)
+
+    oSayDataNasc    := TSay():New(01,180,{||'Data de Nascimento'},oFolder:aDialogs[1],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    dGetDataNasc    := Date()
+    oGetDataNasc    := TGet():New(10,180,{|u| if(Pcount()>0,dGetDataNasc:=u,dGetDataNasc)},;
+        oFolder:aDialogs[1],50,009,,,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,/*Variavel tipo date não precisa do parametro passado aqui*/,,,,.T.)
+
+    oSayDDD         := TSay():New(01,250,{||'DDD'},oFolder:aDialogs[1],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    cGetDDD         := Space(2)
+    oGetDDD         := TGet():New(10,250,{|u| IIF(Pcount()>0,cGetDDD:=u,cGetDDD)},;
+        oFolder:aDialogs[1],20,009,"",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetDDD,,,,)
+
+    oSayCel         := TSay():New(01,280,{||'Celular'},oFolder:aDialogs[1],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    cGetCel         := Space(11)
+    oGetCel         := TGet():New(10,280,{|u| IIF(PCount()>0,cGetCel:=u,cGetCel)},;
+        oFolder:aDialogs[1],40,009,"@E 999-999-999",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetCel,,,,)
+
+    oGroupGenero    := TGroup():New(01,330,20,430,"Gênero",oFolder:aDialogs[1],,,.T.)
+    oRadio          := TRadMenu():New(05,335,aGenero,{|u|IIF(PCount()==0,nGenero,nGenero:=u)},oGroupGenero,,,,,,,,100,12,,,,.T.)
+    
+
+    // Elementos visuais que compõe a primeira aba do Folder - Endereço
+    
+    // Elementos visuais que compõe a primeira aba do Folder - Outros
+    
+
+    // Ativação da janela
+    oDlg1:Activate(,,,.T.)
+
+Return
