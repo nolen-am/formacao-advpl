@@ -33,7 +33,7 @@ User Function telaDeCadastro()
 
     Private oGroupGenero
 
-    Private aGenero := {"Masculino, Feminino"}
+    Private aGenero := {"Masculino", "Feminino"}
     Private nGenero := 1
     Private oRadioGenero
 
@@ -80,8 +80,8 @@ User Function telaDeCadastro()
     oGetCel         := TGet():New(10,280,{|u| IIF(PCount()>0,cGetCel:=u,cGetCel)},;
         oFolder:aDialogs[1],40,009,"@E 999-999-999",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetCel,,,,)
 
-    oGroupGenero    := TGroup():New(01,330,20,430,"Gênero",oFolder:aDialogs[1],,,.T.)
-    oRadio          := TRadMenu():New(05,335,aGenero,{|u|IIF(PCount()==0,nGenero,nGenero:=u)},oGroupGenero,,,,,,,,100,12,,,,.T.)
+    oGroupGenero    := TGroup():New(01,330,30,400,"Gênero",oFolder:aDialogs[1],,,.T.)
+    oRadio          := TRadMenu():New(08,335,aGenero,{|u|IIF(PCount()==0,nGenero,nGenero:=u)},oGroupGenero,,,,,,,,100,12,,,,.T.)
     
 
     // Elementos visuais que compõe a primeira aba do Folder - Endereço
