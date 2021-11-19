@@ -37,15 +37,41 @@ User Function telaDeCadastro()
     Private nGenero := 1
     Private oRadioGenero
 
+    Private oSayCpf
+    Private cGetCpf
+    Private oGetCpf
+
     // Variáveis referentes aos objetos do folder (Endereço)
     Private oSayEndereco
-    Private oGetEndereco
     Private cGetEndereco
+    Private oGetEndereco
+
+    Private oSayBairro
+    Private cGetBairro
+    Private oGetBairro
+
+    Private oSayTipoImovel
+    Private aTipoImovel := {"Casa", "Apartamento", "Sobrado"}
+    Private cTipoImovel := aTipoImovel[1]
+    Private oComboTipoImovel
+
+    Private oSayCep
+    Private cGetCep
+    Private oGetCep
+
+    Private oSayUf
+    Private aComboUf := {"AC","AL","AP","AM","BA","CE","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","RJ","RN","RS","RO","RR","SC","SE","SP","TO","DF"}
+    Private cComboUf := aComboUf[1]
+    Private oComboUf
+
+    Private oSayCidade
+    Private cGetCidade
+    Private oGetCidade
 
     // Variáves referentes aos objetos do folder (Outros)
     Private oSayOutros
-    Private oGetOutros
     Private dGetOutros
+    Private oGetOutros
 
     // Criação da janela
     oDlg1           := TDialog():New(0,0,720,1280,cTituloJanela,,,,,CLR_BLACK,CLR_WHITE,,,.T.)
@@ -57,35 +83,66 @@ User Function telaDeCadastro()
     // Elementos visuais que compõe a primeira aba do Folder - Dados Pessoais
     oSayNome        := TSay():New(01,05,{||'Nome'},oFolder:aDialogs[1],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
     cGetNome        := Space(30)
-    oGetNome        := TGet():New(10,05,{|u| IIF(Pcount()>0,cGetNome:=u,cGetNome)},;
+    oGetNome        := TGet():New(10,05,{|u| if( Pcount()>0,cGetNome:=u,cGetNome )},;
         oFolder:aDialogs[1],096,009,"",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetNome,,,,)
 
     oSayNomeReduz   := TSay():New(01,110,{||'Nome Reduzido'},oFolder:aDialogs[1],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
     cGetNomeReduz   := Space(10)
-    oGetNomereduz   := TGet():New(10,110,{|u| IIF(Pcount()>0,cGetNomeReduz:=u,cGetNomeReduz)},;
+    oGetNomereduz   := TGet():New(10,110,{|u| if( Pcount()>0,cGetNomeReduz:=u,cGetNomeReduz )},;
         oFolder:aDialogs[1],060,009,"",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetNomeReduz,,,,)
 
     oSayDataNasc    := TSay():New(01,180,{||'Data de Nascimento'},oFolder:aDialogs[1],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
     dGetDataNasc    := Date()
-    oGetDataNasc    := TGet():New(10,180,{|u| if(Pcount()>0,dGetDataNasc:=u,dGetDataNasc)},;
+    oGetDataNasc    := TGet():New(10,180,{|u| if( Pcount()>0,dGetDataNasc:=u,dGetDataNasc )},;
         oFolder:aDialogs[1],50,009,,,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,/*Variavel tipo date não precisa do parametro passado aqui*/,,,,.T.)
 
     oSayDDD         := TSay():New(01,250,{||'DDD'},oFolder:aDialogs[1],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
     cGetDDD         := Space(2)
-    oGetDDD         := TGet():New(10,250,{|u| IIF(Pcount()>0,cGetDDD:=u,cGetDDD)},;
+    oGetDDD         := TGet():New(10,250,{|u| if( Pcount()>0,cGetDDD:=u,cGetDDD )},;
         oFolder:aDialogs[1],20,009,"",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetDDD,,,,)
 
     oSayCel         := TSay():New(01,280,{||'Celular'},oFolder:aDialogs[1],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
     cGetCel         := Space(11)
-    oGetCel         := TGet():New(10,280,{|u| IIF(PCount()>0,cGetCel:=u,cGetCel)},;
+    oGetCel         := TGet():New(10,280,{|u| if( PCount()>0,cGetCel:=u,cGetCel )},;
         oFolder:aDialogs[1],40,009,"@E 999-999-999",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetCel,,,,)
 
     oGroupGenero    := TGroup():New(01,330,30,400,"Gênero",oFolder:aDialogs[1],,,.T.)
-    oRadio          := TRadMenu():New(08,335,aGenero,{|u|IIF(PCount()==0,nGenero,nGenero:=u)},oGroupGenero,,,,,,,,100,12,,,,.T.)
-    
+    oRadioGenero    := TRadMenu():New(08,335,aGenero,{|u| if( PCount()==0,nGenero,nGenero:=u )},oGroupGenero,,,,,,,,100,12,,,,.T.)
+
+    oSayCpf         := TSay():New(25,05,{||'CPF'},oFolder:aDialogs[1],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    cGetCpf         := Space(14)
+    oGetCpf         := TGet():New(35,05,{|u| if( Pcount()>0,cGetCpf:=u,cGetCpf )},;
+        oFolder:aDialogs[1],096,009,"@E 999.999.999-99",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetCpf,,,,)
 
     // Elementos visuais que compõe a primeira aba do Folder - Endereço
-    
+    oSayEndereco    := TSay():New(01,05,{||'Endereço'},oFolder:aDialogs[2],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    cGetEndereco    := Space(40)
+    oGetEndereco    := TGet():New(10,05,{|u| if( Pcount()>0,cGetEndereco:=u,cGetEndereco )},;
+        oFolder:aDialogs[2],096,009,"",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetEndereco,,,,)
+
+    oSayBairro      := TSay():New(01,110,{||'Bairro'},oFolder:aDialogs[2],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    cGetBairro      := Space(15)
+    oGetBairro      := TGet():New(10,110,{|u| if( Pcount()>0,cGetBairro:=u,cGetBairro )},;
+        oFolder:aDialogs[2],060,009,"",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetBairro,,,,)
+
+    oSayTipoImovel  := TSay():New(01,180,{||'Imovel'},oFolder:aDialogs[2],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    oComboTipoImovel:= TComboBox():New(10,180,{|u|if( PCount()>0,cTipoImovel:=u,cTipoImovel )},aTipoImovel,60,11,;
+        oFolder:aDialogs[2],,,,,,.T.,,,,,,,,,'cTipoImovel')
+
+    oSayCep         := TSay():New(01,250,{||'CEP'},oFolder:aDialogs[2],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    cGetCep         := Space(14)
+    oGetCep         := TGet():New(10,250,{|u| if( PCount()>0,cGetCep:=u,cGetCep )},;
+        oFolder:aDialogs[2],40,009,"@E 99999-999",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetCep,,,,)
+
+    oSayUf          := TSay():New(25,05,{||'UF'},oFolder:aDialogs[2],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    oComboUf        := TComboBox():New(35,05,{|u| if( Pcount()>0,cComboUf:=u,cComboUf )},aComboUf,60,11,;
+        oFolder:aDialogs[2],,,,,,.T.,,,,,,,,,'cComboUf')´
+
+    oSayCidade      := TSay():New(25,110,{||'Cidade'},oFolder:aDialogs[2],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    cGetCidade      := Space(15)
+    oGetCidade      := TGet():New(35,110,{|u| if( Pcount()>0,cGetCidade:=u,cGetCidade )},;
+        oFolder:aDialogs[2],60,009,"",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetCidade,,,,)
+
     // Elementos visuais que compõe a primeira aba do Folder - Outros
     
 
