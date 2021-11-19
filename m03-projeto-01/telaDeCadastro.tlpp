@@ -135,7 +135,7 @@ User Function telaDeCadastro()
 
     oSayUf          := TSay():New(25,05,{||'UF'},oFolder:aDialogs[2],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
     oComboUf        := TComboBox():New(35,05,{|u| if( Pcount()>0,cComboUf:=u,cComboUf )},aComboUf,60,11,;
-        oFolder:aDialogs[2],,,,,,.T.,,,,,,,,,'cComboUf')´
+        oFolder:aDialogs[2],,,,,,.T.,,,,,,,,,'cComboUf')
 
     oSayCidade      := TSay():New(25,110,{||'Cidade'},oFolder:aDialogs[2],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
     cGetCidade      := Space(15)
