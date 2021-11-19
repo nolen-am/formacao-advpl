@@ -68,9 +68,10 @@ User Function telaDeCadastro()
     Private oGetCidade
 
     // Variáves referentes aos objetos do Folder 03 - Outros
-    Private oSayOutros
-    Private dGetOutros
-    Private oGetOutros
+    Private oSayEstCivil
+    Private aEstCivil       := {"Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viuvo(a)"}
+    Private cEstCivil       := aEstCivil[1]
+    Private oComboEstCivil
 
     // Criação da janela
     oDlg1           := TDialog():New(0,0,720,1280,cTituloJanela,,,,,CLR_BLACK,CLR_WHITE,,,.T.)
@@ -143,7 +144,9 @@ User Function telaDeCadastro()
         oFolder:aDialogs[2],60,009,"",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetCidade,,,,)
 
     // Elementos visuais que compõe a primeira aba do Folder - Outros
-    
+    oSayEstCivil    := TSay():New(01,05,{||'Estado Civil'},oFolder:aDialogs[3],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    oComboEstCivil  := TComboBox():New(10,05,{|u| if( Pcount()>0,cEstCivil:=u,cEstCivil )},;
+        oFolder:aDialogs[3],,,,,,.T.,,,,,,,,,'cEstCivil')
 
     // Ativação da janela
     oDlg1:Activate(,,,.T.)
