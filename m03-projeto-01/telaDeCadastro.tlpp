@@ -10,7 +10,7 @@ User Function telaDeCadastro()
     Private oFolder
     Private aFolder
 
-    // Variáveis referentes aos objetos do folder (Dados Pessoais)
+    // Variáveis referentes aos objetos do Folder 01 - Dados Pessoais
     Private oSayNome
     Private cGetNome
     Private oGetNome
@@ -32,7 +32,6 @@ User Function telaDeCadastro()
     Private oGetCel
 
     Private oGroupGenero
-
     Private aGenero := {"Masculino", "Feminino"}
     Private nGenero := 1
     Private oRadioGenero
@@ -41,7 +40,7 @@ User Function telaDeCadastro()
     Private cGetCpf
     Private oGetCpf
 
-    // Variáveis referentes aos objetos do folder (Endereço)
+    // Variáveis referentes aos objetos do Folder 02 - Endereço
     Private oSayEndereco
     Private cGetEndereco
     Private oGetEndereco
@@ -68,7 +67,7 @@ User Function telaDeCadastro()
     Private cGetCidade
     Private oGetCidade
 
-    // Variáves referentes aos objetos do folder (Outros)
+    // Variáves referentes aos objetos do Folder 03 - Outros
     Private oSayOutros
     Private dGetOutros
     Private oGetOutros
