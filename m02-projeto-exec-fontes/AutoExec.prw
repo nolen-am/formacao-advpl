@@ -36,8 +36,6 @@ User Function AutoExec()
 
 Return
 
-
-
 Static Function fMontaFun()
     cNomeFun := Alltrim(cNomeFun)
 
@@ -47,4 +45,4 @@ Static Function fMontaFun()
         cNomeFun := "U_"+Alltrim(cNomeFun)
     endif
 
-return &cNomeFun
+Return &cNomeFun
