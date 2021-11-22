@@ -7,7 +7,8 @@ Projeto de fonte utilizado para criar uma tela de cadastro simples contendo todo
 elementos visuais aprendidos durante o primeiro módulo do curso avançado de AdvPl.
 @author  Lenon
 @since   22/11/21
-@see TMultiGet: https://tdn.totvs.com/pages/viewpage.action?pageId=203771190
+@see    TMultiGet: https://tdn.totvs.com/pages/viewpage.action?pageId=203771190
+        TBitmap: https://tdn.totvs.com/display/tec/TBitmap
 /*/
 //-------------------------------------------------------------------
 
@@ -111,6 +112,14 @@ User Function telaDeCadastro()
     
     Private oBtnValida03
 
+    // Variáveis referentes as imagens e botões que estão fora do Folder
+    SetPrvt("oBmpIncluir","oBmpAlterar","oBmpConsultar","oBmpExcluir")
+    SetPrvt("oBtnIncluir","oBtnAlterar","oBtnConsultar","oBtnExcluir")
+    // Private oBtnIncluir
+    // Private oBtnAlterar
+    // Private oBtnConsultar
+    // Private oBtnExcluir
+
     // Criação da janela
     oDlg1           := TDialog():New(0,0,720,1280,cTituloJanela,,,,,CLR_BLACK,CLR_WHITE,,,.T.)
 
@@ -212,6 +221,29 @@ User Function telaDeCadastro()
 
     oBtnValida03    := TButton():New(60,20,"Validar Dados Adicionais",oFolder:aDialogs[3],;
         {|| MostrarDadosOutros()},100,15,,,.F.,.T.,.F.,,.F.,,,.F.)
+
+    // Elementos de imagem e botões que estarão fora do Folder
+    oBmpIncluir     := TBitmap():New(220,30,142,142,,"C:\workspace-curso-advpl\m03-projeto-01\tmp\incluir.bmp",.T.,;
+        oDlg1,{|| Alert("Clique aqui para incluir!")},,.F.,.F.,,,.F.,,.T.,,.F.)
+    oBmpIncluir:lAutoSize   := .T.
+
+    oBmpAlterar     := TBitmap():New(220,90,142,142,,"C:\workspace-curso-advpl\m03-projeto-01\tmp\alterar.bmp",.T.,;
+        oDlg1,{|| Alert("Clique aqui para alterar!")},,.F.,.F.,,,.F.,,.T.,,.F.)
+    oBmpAlterar:lAutoSize   := .T.
+
+    oBmpConsultar   := TBitmap():New(220,150,142,142,,"C:\workspace-curso-advpl\m03-projeto-01\tmp\consultar.bmp",.T.,;
+        oDlg1,{|| Alert("Clique aqui para consultar!")},,.F.,.F.,,,.F.,,.T.,,.F.)
+    oBmpConsultar:lAutoSize := .T.
+
+    oBmpExcluir     := TBitmap():New(220,210,142,142,,"C:\workspace-curso-advpl\m03-projeto-01\tmp\excluir.bmp",.T.,;
+        oDlg1,{|| Alert("Clique aqui para excluir!")},,.F.,.F.,,,.F.,,.T.,,.F.)
+    oBmpConsultar:lAutoSize := .T.
+
+
+    oBtnIncluir     := TButton():New(250,20,"Incluir",      oDlg1,{|| }, 40,15,,,.F.,.T.,.F.,,.F.,,,.F.)
+    oBtnAlterar     := TButton():New(250,80,"Alterar",      oDlg1,{|| }, 40,15,,,.F.,.T.,.F.,,.F.,,,.F.)
+    oBtnConsultar   := TButton():New(250,140,"Consultar",   oDlg1,{|| }, 40,15,,,.F.,.T.,.F.,,.F.,,,.F.)
+    oBtnExcluir     := TButton():New(250,200,"Excluir",     oDlg1,{|| }, 40,15,,,.F.,.T.,.F.,,.F.,,,.F.)
     
     // Ativação da janela
     oDlg1:Activate(,,,.T.)
