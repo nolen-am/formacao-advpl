@@ -1,6 +1,16 @@
 #include 'totvs.ch'
 #include 'protheus.ch'
 
+//-------------------------------------------------------------------
+/*/{Protheus.doc} Projeto - Tela de Cadastro
+Projeto de fonte utilizado para criar uma tela de cadastro simples contendo todos os
+elementos visuais aprendidos durante o primeiro módulo do curso avançado de AdvPl.
+@author  Lenon
+@since   22/11/21
+@see TMultiGet: https://tdn.totvs.com/pages/viewpage.action?pageId=203771190
+/*/
+//-------------------------------------------------------------------
+
 User Function telaDeCadastro()
 
     Private oDlg1
@@ -32,13 +42,15 @@ User Function telaDeCadastro()
     Private oGetCel
 
     Private oGroupGenero
-    Private aGenero := {"Masculino", "Feminino"}
-    Private nGenero := 1
+    Private aGenero         := {"Masculino", "Feminino"}
+    Private nGenero         := 1
     Private oRadioGenero
 
     Private oSayCpf
     Private cGetCpf
     Private oGetCpf
+
+    Private oBtnValida01
 
     // Variáveis referentes aos objetos do Folder 02 - Endereço
     Private oSayEndereco
@@ -50,8 +62,8 @@ User Function telaDeCadastro()
     Private oGetBairro
 
     Private oSayTipoImovel
-    Private aTipoImovel := {"Casa", "Apartamento", "Sobrado"}
-    Private cTipoImovel := aTipoImovel[1]
+    Private aTipoImovel     := {"Casa", "Apartamento", "Sobrado"}
+    Private cTipoImovel     := aTipoImovel[1]
     Private oComboTipoImovel
 
     Private oSayCep
@@ -59,19 +71,45 @@ User Function telaDeCadastro()
     Private oGetCep
 
     Private oSayUf
-    Private aComboUf := {"AC","AL","AP","AM","BA","CE","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","RJ","RN","RS","RO","RR","SC","SE","SP","TO","DF"}
-    Private cComboUf := aComboUf[1]
+    Private aComboUf        := {"AC","AL","AP","AM","BA","CE","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","RJ","RN","RS","RO","RR","SC","SE","SP","TO","DF"}
+    Private cComboUf        := aComboUf[1]
     Private oComboUf
 
     Private oSayCidade
     Private cGetCidade
     Private oGetCidade
 
+    Private oBtnValida02
+
     // Variáves referentes aos objetos do Folder 03 - Outros
     Private oSayEstCivil
     Private aEstCivil       := {"Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viuvo(a)"}
     Private cEstCivil       := aEstCivil[1]
     Private oComboEstCivil
+
+    Private oGroupPet
+    Private aPet            := {"Sim", "Não"}
+    Private nPet            := 2
+    Private oRadioPet
+
+    Private oGroupLinguagens
+    Private oCheckC
+    Private oCheckJavascript
+    Private oCheckAdvpl
+    Private oCheckSQL
+    Private lCheckC         := .F.
+    Private lCheckJavascript:= .F.
+    Private lCheckAdvpl     := .F.
+    Private lCheckSQL       := .F.
+
+    Private oBtnSelectAll
+    Private oBtnUnselectAll
+
+    Private oSayObs
+    Private cObs
+    Private oTMultiGetObs
+    
+    Private oBtnValida03
 
     // Criação da janela
     oDlg1           := TDialog():New(0,0,720,1280,cTituloJanela,,,,,CLR_BLACK,CLR_WHITE,,,.T.)
@@ -114,6 +152,9 @@ User Function telaDeCadastro()
     oGetCpf         := TGet():New(35,05,{|u| if( Pcount()>0,cGetCpf:=u,cGetCpf )},;
         oFolder:aDialogs[1],096,009,"@E 999.999.999-99",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetCpf,,,,)
 
+    oBtnValida01    := TButton():New(60,20,"Validar Dados Pessoais",oFolder:aDialogs[1],;
+        {|| MostrarDadosPessoais()},100,15,,,.F.,.T.,.F.,,.F.,,,.F.)
+
     // Elementos visuais que compõe a primeira aba do Folder - Endereço
     oSayEndereco    := TSay():New(01,05,{||'Endereço'},oFolder:aDialogs[2],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
     cGetEndereco    := Space(40)
@@ -143,12 +184,72 @@ User Function telaDeCadastro()
     oGetCidade      := TGet():New(35,110,{|u| if( Pcount()>0,cGetCidade:=u,cGetCidade )},;
         oFolder:aDialogs[2],60,009,"",,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F.,,cGetCidade,,,,)
 
+    oBtnValida02    := TButton():New(60,20,"Validar Endereço",oFolder:aDialogs[2],;
+        {|| MostrarDadosEndereco()},100,15,,,.F.,.T.,.F.,,.F.,,,.F.)
+
     // Elementos visuais que compõe a primeira aba do Folder - Outros
     oSayEstCivil    := TSay():New(01,05,{||'Estado Civil'},oFolder:aDialogs[3],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
-    oComboEstCivil  := TComboBox():New(10,05,{|u| if( Pcount()>0,cEstCivil:=u,cEstCivil )},;
+    oComboEstCivil  := TComboBox():New(10,05,{|u| if( Pcount()>0,cEstCivil:=u,cEstCivil )},aEstCivil,60,11,;
         oFolder:aDialogs[3],,,,,,.T.,,,,,,,,,'cEstCivil')
 
+    oGroupPet       := TGroup():New(01,80,40,140,"Possui Pet?",oFolder:aDialogs[3],,,.T.)
+    oRadtioPet      := TRadMenu():New(10,85,aPet,{|u| if( Pcount()>0,nPet:=u,nPet )},oFolder:aDialogs[3],,,,,,,,30,20,,,,.T.)
+
+    oGroupLinguagens:= TGroup():New(01,150,55,250,"Linguagens que domina",oFolder:aDialogs[3],,,.T.)
+    oCheckC         := TCheckBox():New(10,160,'C',{|| lCheckC},oFolder:aDialogs[3],100,210,,{|| lCheckC := !lCheckC},,,,,,.T.,,,)
+    oCheckJavascript:= TCheckBox():New(20,160,'JavaScript',{|| lCheckJavascript},oFolder:aDialogs[3],100,210,,{|| lCheckJavascript := !lCheckJavascript},,,,,,.T.,,,)
+    oCheckAdvpl     := TCheckBox():New(30,160,'AdvPL',{|| lCheckAdvpl},oFolder:aDialogs[3],100,210,,{|| lCheckAdvpl := !lCheckAdvpl},,,,,,.T.,,,)
+    oCheckSQL       := TCheckBox():New(40,160,'SQL',{|| lCheckSQL},oFolder:aDialogs[3],100,210,,{|| lCheckSQL := !lCheckSQL},,,,,,.T.,,,)
+
+    oBtnSelectAll   := TButton():New(15,205,"Todas",oFolder:aDialogs[3],;
+        { || lCheckC := .T.,lCheckJavascript := .T.,lCheckAdvpl := .T.,lCheckSQL := .T., },40,10,,,.F.,.T.,.F.,,.F.,,,.F.)
+    oBtnUnselectAll := TButton():New(30,205,"Nenhuma",oFolder:aDialogs[3],;
+        { || lCheckC := .F.,lCheckJavascript := .F.,lCheckAdvpl := .F.,lCheckSQL := .F., },40,10,,,.F.,.T.,.F.,,.F.,,,.F.)
+
+    oSayObs         := TSay():New(01,270,{||'Observação'},oFolder:aDialogs[3],,,,,,.T.,CLR_BLACK,CLR_WHITE,300,20)
+    cObs            := "Digite aqui alguma observação ou informação adicional..."
+    oTMultiGetObs   := TMultiGet():New(10,270,{ |u| if(Pcount()>0,cObs:=u,cObs) },oFolder:aDialogs[3],200,100,,,,,,.T.)
+
+    oBtnValida03    := TButton():New(60,20,"Validar Dados Adicionais",oFolder:aDialogs[3],;
+        {|| MostrarDadosOutros()},100,15,,,.F.,.T.,.F.,,.F.,,,.F.)
+    
     // Ativação da janela
     oDlg1:Activate(,,,.T.)
+
+Return
+
+// Função que exibe / valida os dados preenchidos no Folder 01 - Dados Pessoais
+Static Function MostrarDadosPessoais()
+
+    Msginfo("Nome:          "+cGetNome+Chr(13)+Chr(10)+;
+            "Nome Reduzido: "+cGetNomeReduz+Chr(13)+Chr(10)+;
+            "Data de Nasc:  "+DToC(dGetDataNasc)+Chr(13)+Chr(10)+;
+            "Celular:       "+"("+cGetDDD+") "+cGetCel+Chr(13)+Chr(10)+;
+            "Gênero:        "+aGenero[nGenero]+Chr(13)+Chr(10)+;
+            "CPF:           "+cGetCpf,"Dados Pessoais")
+
+Return
+
+// Função que exibe / valida os dados preenchidos no Folder 02 - Endereço
+Static Function MostrarDadosEndereco()
+
+    MsgInfo("Endereço:       "+cGetEndereco+Chr(13)+Chr(10)+;
+            "Bairro:         "+cGetBairro+Chr(13)+Chr(10)+;
+            "Tipo de Imovel: "+cTipoImovel+Chr(13)+Chr(10)+;
+            "UF:             "+cComboUf+Chr(13)+Chr(10)+;
+            "Cidade:         "+cGetCidade,"Dados Endereço")
+
+Return
+
+// Função que exibe / valida os dados preenchidos no Folder 03 - Outros
+Static Function MostrarDadosOutros()
+
+    MsgInfo("Estado Civil: "+cEstCivil+Chr(13)+Chr(10)+;
+            "Possui Pet:   "+aPet[nPet]+Chr(13)+Chr(10)+;
+            "C:            "+IIF(lCheckC,"Sim","Não")+Chr(13)+Chr(10)+;
+            "JavaScript:   "+IIF(lCheckJavascript,"Sim","Não")+Chr(13)+Chr(10)+;
+            "AdvPl:        "+IIF(lCheckAdvpl,"Sim","Não")+Chr(13)+Chr(10)+;
+            "SQL:          "+IIF(lCheckSQL,"Sim","Não")+Chr(13)+Chr(10)+;
+            "Observação:   "+cObs)
 
 Return
