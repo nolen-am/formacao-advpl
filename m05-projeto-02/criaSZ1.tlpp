@@ -1,0 +1,22 @@
+#include 'protheus.ch'
+#include 'totvs.ch'
+#include 'topconn.ch'
+
+/*/{Protheus.doc} criaSz1
+description
+@type function
+@author Lenon
+@since 06/12/2021
+@see https://tdn.totvs.com/display/tec/DBSelectArea
+@see https://tdn.totvs.com/pages/viewpage.action?pageId=23889281
+@see https://tdn.totvs.com/display/tec/DBSetOrder
+@see https://tdn.totvs.com/pages/viewpage.action?pageId=27675626
+@see https://tdn.totvs.com/pages/viewpage.action?pageId=23888859
+/*/
+User Function criaSz1()
+
+dbSelectArea("SZ1") // Seleciona a área; se a tabela não estiver criada, ele irá criá-la
+DBSetOrder(1)
+SZ1->(DBCloseArea())
+
+return
