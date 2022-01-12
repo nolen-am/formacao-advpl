@@ -1,0 +1,27 @@
+#include "protheus.ch"
+#include "totvs.ch"
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} MT030INC
+Ponto de entrada para gravar no campo A1_XUSRID o código do usuário
+responsável pela inclusão.
+@author  Lenon
+@since   12/01/2022
+/*/
+//-------------------------------------------------------------------
+
+User Function MT030INC()
+    Local aArea := GetArea()
+
+    If PARAMIXB <> 3
+        MsgInfo("Você acabou de inserir com sucesso o cliente: "+Chr(10)+Chr(13)+;
+            M->A1_NOME)
+
+        RecLock("SA1", .F.)
+            SA1->A1_XUSRINC := RetCodUsr() // funcao do protheus que retorna o código do usuário
+        MsUnlock()
+    Endif
+
+    Restarea(aArea)
+
+Return

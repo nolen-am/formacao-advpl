@@ -1,0 +1,25 @@
+#include 'protheus.ch'
+#include 'totvs.ch'
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} M030DEL
+Ponto de entrada chamado antes de executar a rotina de exclusão de clientes.
+Pode ser utilizado para continuar ou abandonar a rotina de exclusão.
+@author  Lenon
+@since   12/01/2022
+@see     https://tdn.totvs.com/pages/releaseview.action?pageId=6784134   
+/*/
+//-------------------------------------------------------------------
+
+User Function M030DEL()
+    Local lRet  := .T.
+    Local aArea := GetArea()
+
+    IF SA1->A1_PESSOA = "J"
+        lRet := .F.
+        Alert("Não foi possível excluir o cliente, este cliente é pessoa jurídica.")
+    ENDIF
+
+    Restarea(aArea)
+
+Return(lRet)
