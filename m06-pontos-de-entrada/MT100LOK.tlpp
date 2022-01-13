@@ -1,0 +1,37 @@
+#include "protheus.ch"
+#include "totvs.ch"
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} MT100LOK
+Ponto de entrada de validação utilizado para validar a linha do documento de entrada MTA103.
+Implementado inicialmente para tratar e impedir que itens sejam inclusos 
+com quantidade maior ou igual a 5 e que usem TES diferentes das que estão no
+parametro MV_YTESQTD.
+@author  Lenon
+@since   13/01/2022
+@see     https://tdn.totvs.com/pages/releaseview.action?pageId=6085397
+@see     https://tdn.totvs.com/pages/viewpage.action?pageId=24346931
+@see     https://tdn.totvs.com/pages/viewpage.action?pageId=24347112
+/*/
+//-------------------------------------------------------------------
+
+User Function MT100LOK()
+    Local lRet          := .T.
+    // atribuindo nas variaveis atraves do aScan a posição do array onde encontram-se os campos passados como parametro (D1_TES e D1_QUANT)
+    // essa é uma boa prática visto que se a TOTVS alterar ou adicionar posições no array, não perderemos a referência por posição uma vez
+    // que estamos nos baseando no nome do campo.
+    Local nAcolsTes     := aScan( aHeader, {|x| AllTrim(x[2]) == "D1_TES"} )
+    Local nAcolsQuant   := aScan( aHeader, {|x| AllTrim(x[2]) == "D1_QUANT"} )
+
+    // no aCols o primeiro parametro refere-se a linha e o segundo a coluna
+    Local cTes          := aCols[n, nAcolsTes]
+    Local nQuant        := aCols[n, nAcolsQuant]
+
+    If nQuant >= 5 .AND. !(cTes $ SuperGetMV("MV_YTESQTD"))
+        lRet := .F.
+
+        Alert("Para quantidades iguais ou superiores a 5, deve-se usar as TES específicas."+Chr(10)+Chr(13)+;
+            "Consulte o seu setor Financeiro", "Alert")
+    Endif
+
+Return(lRet)

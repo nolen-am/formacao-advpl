@@ -1,0 +1,22 @@
+#include "protheus.ch"
+#include "totvs.ch"
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} A010TOK
+Ponto de entrada para impedir a inclusão ou alteração dos produtos 
+com grupos 0010/0011/0012.
+@author  Lenon
+@since   13/01/2022
+@see     https://tdn.totvs.com/display/tec/Operadores+Comuns
+/*/
+//-------------------------------------------------------------------
+
+User Function A010TOK()
+    Local lRet := .T.
+
+    // as variaveis "Inclui" e "Altera" sao variaveis nativas do protheus
+    If Inclui
+        lRet := u_A010TOKVALID(M->B1_GRUPO) // Receberá .T. ou .F.
+    Endif
+
+Return(lRet)

@@ -1,0 +1,46 @@
+#include "protheus.ch"
+#include "totvs.ch"
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} M410LIOK
+Ponto de entrada utilizado para validar as linhas do pedido de venda.
+O intuito é não permitir quantidade maior que 10 para cada item.
+@author  Lenon
+@since   13/01/2022
+@see     https://tdn.totvs.com/pages/releaseview.action?pageId=6784149
+/*/
+//-------------------------------------------------------------------
+
+User Function M410LIOK()
+    Local lRet          := .T.
+    Local nCount
+    Local nCountIquals  := 0
+    
+    // SC5: Tabela do cabeçalho do pedido de venda.
+    // SC6: Tabela dos itens do pedido de venda. 
+
+    // Buscando a posição da coluna referente a C6_QTDVEN (quantidade vendida)
+    Local nAColsQtdVen  := aScan( aHeader, {|x| AllTrim(x[2]) == "C6_QTDVEN"} )
+    // Atribuindo na variavel o valor preenchido no campo de quantidade vendida
+    Local nQtdVen       := aCols[n, nAColsQtdVen]
+
+    Local nAColsCodProd := aScan( aHeader, {|x| AllTrim(x[2]) == "C6_PRODUTO"} )
+    Local cCodProduto      := aCols[n, nAColsCodProd]
+
+    FOR nCount := 1 to Len(aCols)
+
+        If aCols[nCount, nAColsCodProd] = cCodProduto
+            nCountIquals++
+        Endif
+
+    NEXT nCount
+
+    If nCountIquals > 1
+        lRet := .F.
+        Alert("Não é permitida a inclusão de produtos iguais no mesmo pedido!!!")
+    Elseif nQtdVen > 10
+        lRet := .F.
+        Alert("Neste natal não estamos permitindo mais de 10 unidades do mesmo item.")
+    Endif
+
+Return(lRet)

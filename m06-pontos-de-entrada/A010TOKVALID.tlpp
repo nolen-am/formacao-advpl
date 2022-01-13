@@ -1,0 +1,21 @@
+#include "protheus.ch"
+#include "totvs.ch"
+
+//-------------------------------------------------------------------
+/*/{Protheus.doc} A010TOKVALID
+Função auxiliar que verifica se é possível ou não inserir o produto no
+grupo escolhido
+@author  Lenon
+@since   13/01/2022
+/*/
+//-------------------------------------------------------------------
+
+User Function A010TOKVALID(cGrupo)
+    Local lReturn := .T.
+
+    If cGrupo $ "0010/0011/0012"
+        lReturn := .F.
+        Alert("Inclusão não permitida devido ao código do grupo "+cGrupo+ "Atenção!")
+    Endif    
+
+Return(lReturn)
