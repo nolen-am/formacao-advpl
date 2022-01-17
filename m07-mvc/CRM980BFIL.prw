@@ -3,7 +3,7 @@
 
 //-------------------------------------------------------------------
 /*/{Protheus.doc} CRM980BFIL
-CRM980BFIL é o novo ponto de entrada padrão MVC que substiruirá o antigo 
+CRM980BFIL é o novo ponto de entrada, padrão MVC, que substiruirá o antigo 
 ponto de entrada MA030BRW utlizado na rotina padrão MATA030.
 @author  Lenon
 @since   13/01/2022
@@ -15,6 +15,7 @@ ponto de entrada MA030BRW utlizado na rotina padrão MATA030.
 User Function CRM980BFIL()
 
 Return
+
 
 Static Function MenuDef()
 
