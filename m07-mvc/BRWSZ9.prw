@@ -2,8 +2,7 @@
 #include "FWMVCDEF.ch"
 
 //-------------------------------------------------------------------
-/*/{Protheus.doc} function
-description
+/*/{Protheus.doc} BRWSZ9
 @author  Lenon
 @since   14/01/2022
 @see     https://tdn.totvs.com/pages/releaseview.action?pageId=62390842
