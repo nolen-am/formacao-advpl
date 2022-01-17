@@ -77,7 +77,6 @@ Return oMenu
 
 
 // -------------------------------- ModelDef - Regras de negócio --------------------------
-// Regras de negócio
 Static Function ModelDef()
     Local oModel        := Nil
 
