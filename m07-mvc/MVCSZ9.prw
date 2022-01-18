@@ -16,7 +16,7 @@ Primeiro projeto utilizando o MVC - Modelo 1
 
 // Preparando o Browse através da User Function
 User Function MVCSZ9()
-    Local aArea         := GetNextAlias()
+    // Local aArea         := GetNextAlias()
     Local oBrowseSZ9
 
     oBrowseSZ9          := FwmBrowse():New()
