@@ -1,4 +1,4 @@
-#include "protheus"
+#include "protheus.ch"
 
 //-------------------------------------------------------------------
 /*/{Protheus.doc} MVCSZ7M
